@@ -1,11 +1,12 @@
-// raiz/
-// ├── server.js
-// ├── db.js
-// ├── package.json
-// ├── .env (⚠️ NÃO enviar para o GitHub)
-// ├── .gitignore
-// ├── routes/
-// │   ├── auth.js
-// │   └── videos.js
-// └── middleware/
-//     └── authMiddleware.js
+import pg from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const { Pool } = pg;
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+});
+
+export default pool;
